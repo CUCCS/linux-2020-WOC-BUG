@@ -288,7 +288,7 @@ apt-get install genisoimage
 
 发现是ubuntu-server-autoinstall.seed文件放错位置了，修改后成功！！~~终于啊我的老天爷啊！~~
 
-**视频**：
+**视频**：（mp4格式视频无法显示，gif视频格式太大无法push，正在解决...）
 
 <video id="video" controls="" preload="none">
     <source id="mp4" src="img\Unattended.mp4" type="video/mp4">
