@@ -292,7 +292,8 @@ apt-get install genisoimage
     <source id="mp4" src="img\Unattended.mp4" type="video/mp4">
 </video>
 
-
+安装时长：12分钟
+视频时长：2分钟
 
 
 ## 参考资料
