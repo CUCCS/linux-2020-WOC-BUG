@@ -63,7 +63,7 @@
 sudo vi /etc/netplan/01-netcfg.yaml
 ```
 
-![](./img/Dual network card.png)
+![](./img/network.png)
 
 用v进入编辑模式，选中enp0s3:和dhcp4:yes两行，用y复制，用p粘贴，再按v推出编辑模式。
 
@@ -71,7 +71,7 @@ sudo vi /etc/netplan/01-netcfg.yaml
 
 **配置成功**
 
-![](./img/enp0s3 and enp0s8.png)
+![](./img/enp0s8.png)
 
 **NAT**：10.0.2.15
 
@@ -113,7 +113,7 @@ Linux下安装openssh服务端：
 
 生成公钥ssh-keygen：
 
-![avatar](img\ssh-keygen .png)
+![avatar](./img/ssh-keygen.png)
 
 生成.ssh文件：
 
