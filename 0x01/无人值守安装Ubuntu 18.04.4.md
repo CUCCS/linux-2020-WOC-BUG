@@ -186,7 +186,7 @@ sudo mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 6. 卸载iso镜像
 
 ```linux
-umount loopdir
+sudo umount loopdir
 ```
 
 7. 进入目标工作目录
