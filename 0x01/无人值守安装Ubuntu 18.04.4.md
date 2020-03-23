@@ -113,7 +113,7 @@ Linux下安装openssh服务端：
 
 生成公钥ssh-keygen：
 
-![avatar](./img/ssh-keygen.png)
+![avatar](./img/ssh-keygen .png)
 
 生成.ssh文件：
 
