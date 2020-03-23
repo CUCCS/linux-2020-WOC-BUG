@@ -290,8 +290,6 @@ apt-get install genisoimage
 
 **视频**：（mp4格式视频无法显示，gif视频格式太大无法push，正在解决...）
 
-![](./img/Unattended.gif)
-
 安装时长：12分钟
 视频时长：2分钟
 
