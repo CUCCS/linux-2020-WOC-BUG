@@ -113,7 +113,7 @@ Linux下安装openssh服务端：
 
 生成公钥ssh-keygen：
 
-![avatar](./img/ssh-keygen .png)
+![avatar](./img/ssh-keygen.png)
 
 生成.ssh文件：
 
@@ -200,7 +200,7 @@ cd cd/
 vim isolinux/txt.cfg
 ```
 
-![](./img/default install.png)
+![](./img/default.png)
 
 9. 添加以下内容到该文件后强制保存退出
 
