@@ -288,12 +288,11 @@ apt-get install genisoimage
 
 发现是ubuntu-server-autoinstall.seed文件放错位置了，修改后成功！！~~终于啊我的老天爷啊！~~
 
-**视频**：
+**视频**：（mp4格式视频无法显示，gif视频格式太大无法push，正在解决...）
 
 ![](./img/Unattended.gif)
 
 安装时长：12分钟
-
 视频时长：2分钟
 
 [presseed.cfg文件对照暂时来不及了，之后再补上]
