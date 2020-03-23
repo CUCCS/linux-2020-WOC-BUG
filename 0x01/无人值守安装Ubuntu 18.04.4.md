@@ -1,3 +1,5 @@
+[TOC]
+
 # 无人值守安装Ubuntu 18.04.4
 
 ## 软件环境
@@ -61,7 +63,7 @@
 sudo vi /etc/netplan/01-netcfg.yaml
 ```
 
-![](img\Dual network card.png)
+![](./img/Dual network card.png)
 
 用v进入编辑模式，选中enp0s3:和dhcp4:yes两行，用y复制，用p粘贴，再按v推出编辑模式。
 
@@ -69,7 +71,7 @@ sudo vi /etc/netplan/01-netcfg.yaml
 
 **配置成功**
 
-![](img\enp0s3 and enp0s8.png)
+![](./img/enp0s3 and enp0s8.png)
 
 **NAT**：10.0.2.15
 
@@ -77,7 +79,7 @@ sudo vi /etc/netplan/01-netcfg.yaml
 
 **使用putty连接Linux**
 
-![avatar](img\putty.png)
+![avatar](./img/putty.png)
 
 ### 2. 配置SSH免密登录
 
@@ -85,29 +87,29 @@ sudo vi /etc/netplan/01-netcfg.yaml
 
 进入路径下输入ssh-keygen
 
-![avatar](img\ssh-key.png)
+![avatar](./img/ssh-key.png)
 
 查看公钥生成成功：
 
-![avatar](img\id_rsa.png)
+![avatar](./img/id_rsa.png)
 
 在Windows上安装openssh客户端：
 
 （Chocolatey安装OpenSSH总是超时，暂未解决，所以手动安装）
 
-![avatar](img\openssh客户端.png)
+![avatar](./img/openssh客户端.png)
 
 配置：
 
-![avatar](img\配置openssh客户端.png)
+![avatar](./img/配置openssh客户端.png)
 
 Linux下安装openssh服务端：
 
-![avatar](img\linux下安装openssh服务端.png)
+![avatar](./img/linux下安装openssh服务端.png)
 
 开启ssh服务：
 
-![avatar](img\开启ssh服务.png)
+![avatar](./img/开启ssh服务.png)
 
 生成公钥ssh-keygen：
 
@@ -115,27 +117,27 @@ Linux下安装openssh服务端：
 
 生成.ssh文件：
 
-![avatar](img\生成.ssh文件.png)
+![avatar](./img/生成.ssh文件.png)
 
 查看.ssh文件,有authorized_keys文件：
 
-![avatar](img\查看.ssh文件.png)
+![avatar](./img/查看.ssh文件.png)
 
 复制id_rsa.pub文件：
 
-![](img\复制id_rsa.pub文件.png)
+![](./img/复制id_rsa.pub文件.png)
 
 id_rsa.pub添加到.ssh/authorzied_keys文件：
 
-![](img\id_rsa.pub添加到.sshauthorzied_keys文件.png)
+![](./img/id_rsa.pub添加到.sshauthorzied_keys文件.png)
 
 putty中测试：
 
-![](img\测试.png)
+![](./img/测试.png)
 
 虚拟机中测试：
 
-![](img\测试2.png)
+![](./img/测试2.png)
 
 
 
@@ -143,7 +145,7 @@ putty中测试：
 
 1. 使用psftp将镜像传送到/home/wocbug
 
-![](img\psftp.png)
+![](./img/psftp.png)
 
 2. 回到PUTTY，在当前用户目录下创建一个用于挂载iso镜像文件的目录
 
@@ -179,7 +181,7 @@ sudo mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
  rsync -av loopdir/ cd
 ```
 
-![](img\rsync.png)
+![](./img/rsync.png)
 
 6. 卸载iso镜像
 
@@ -198,7 +200,7 @@ cd cd/
 vim isolinux/txt.cfg
 ```
 
-![](img\default install.png)
+![](./img/default install.png)
 
 9. 添加以下内容到该文件后强制保存退出
 
@@ -209,7 +211,7 @@ label autoinstall
   append  file=/cdrom/preseed/ubuntu-server-autoinstall.seed debian-installer/locale=en_US console-setup/layoutcode=us keyboard-configuration/layoutcode=us console-setup/ask_detect=false localechooser/translation/warn-light=true localechooser/translation/warn-severe=true initrd=/install/initrd.gz root=/dev/ram rw quiet
 ```
 
-![](img\insert.png)
+![](./img/insert.png)
 
 10. 修改配置缩短超时等待时间 
 
@@ -223,7 +225,7 @@ sudo vi isolinux/isolinux.cfg
 timeout 10
 ```
 
-![](img\timeout.png)
+![](./img/timeout.png)
 
 12. 提前阅读并编辑定制Ubuntu官方提供的示例[preseed.cfg](https://help.ubuntu.com/lts/installation-guide/example-preseed.txt)，并将该文件保存到刚才创建的工作目录
 
@@ -234,7 +236,7 @@ timeout 10
 13.  重新生成md5sum.txt
     cd ~/cd && find . -type f -print0 | xargs -0 md5sum > md5sum.txt
 
-![](img\md5sum.png)
+![](./img/md5sum.png)
 
 14.
 
@@ -255,7 +257,7 @@ mkisofs -r -V "Custom Ubuntu Install CD" \
 
 报错：
 
-![](img\error.png)
+![](./img/error.png)
 
 安装genisoimage
 
@@ -264,25 +266,25 @@ apt-get update
 apt-get install genisoimage
 ```
 
-![](img\install.png)
+![](./img/install.png)
 
 再使用mkisofs命令：
 
-![](img\done.png)
+![](./img/done.png)
 
 15. mv custom.iso ../
 
 16. 打开psftp窗口，输入get custom.iso
 
-    ![](img\custom.iso.png)
+    ![](./img/custom.iso.png)
 
 17.将文件拷贝到当前目录
 
-![](img\copy.png)
+![](./img/copy.png)
 
 18. 激动人心的无人值守时刻到了！果然，第一遍失败了...
 
-    ![](img\fail.png)
+    ![](./img/fail.png)
 
 发现是ubuntu-server-autoinstall.seed文件放错位置了，修改后成功！！~~终于啊我的老天爷啊！~~
 
