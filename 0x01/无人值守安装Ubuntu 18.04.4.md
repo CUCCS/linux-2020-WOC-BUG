@@ -16,20 +16,18 @@
 2. Host-Only IP：192.168.56.101
 
 
+---
 
 ## 实验问题
-
----
 
 * 如何配置无人值守安装iso并在Virtualbox中完成自动化安装?
 * Virtualbox安装完Ubuntu之后新添加的网卡如何实现系统开机自动启用和自动获取IP？
 * 如何使用sftp在虚拟机和宿主机之间传输文件？
 
-
+---
 
 ## 实验前知识点准备
 
----
 
 * 镜像：一个磁盘上的数据在另一个磁盘上存在一个完全相同的副本。
 
@@ -49,9 +47,9 @@
 
 * PSFTP：是Putty SFTP客户端，用于本地与服务器间安全传输文件（使用SSH[连接](https://baike.baidu.com/item/连接/70199)）。
 
-## 实验步骤
-
 ---
+
+## 实验步骤
 
 ### 1.  手动安装Ubuntu18.04
 
@@ -59,7 +57,7 @@
 
 **配置双网卡**
 
-```vim
+```bash
 sudo vi /etc/netplan/01-netcfg.yaml
 ```
 
@@ -80,6 +78,8 @@ sudo vi /etc/netplan/01-netcfg.yaml
 **使用putty连接Linux**
 
 ![avatar](./img/putty.png)
+
+---
 
 ### 2. 配置SSH免密登录
 
@@ -111,18 +111,6 @@ Linux下安装openssh服务端：
 
 ![avatar](./img/开启ssh服务.png)
 
-生成公钥ssh-keygen：
-
-![avatar](./img/ssh-keygen.png)
-
-生成.ssh文件：
-
-![avatar](./img/生成.ssh文件.png)
-
-查看.ssh文件,有authorized_keys文件：
-
-![avatar](./img/查看.ssh文件.png)
-
 复制id_rsa.pub文件：
 
 ![](./img/复制id_rsa.pub文件.png)
@@ -139,7 +127,7 @@ putty中测试：
 
 ![](./img/测试2.png)
 
-
+---
 
 ### 3. 定制镜像
 
@@ -149,13 +137,13 @@ putty中测试：
 
 2. 回到PUTTY，在当前用户目录下创建一个用于挂载iso镜像文件的目录
 
-```linux
+```bash
 mkdir loopdir
 ```
 
 3. 挂载iso镜像文件到该目录
 
-```linux
+```bash
 mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 ```
 
@@ -163,7 +151,7 @@ mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 
 解决方法：用sudo命令以系统管理员身份执行指令
 
-```linux
+```bash
 sudo mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 ```
 
@@ -171,13 +159,13 @@ sudo mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 
 4. 创建一个工作目录用于克隆光盘内容
 
-```linux
+```bash
  mkdir cd
 ```
 
 5. 同步光盘内容到目标工作目录
 
-```linux
+```bash
  rsync -av loopdir/ cd
 ```
 
@@ -185,18 +173,18 @@ sudo mount -o loop ubuntu-18.04.4-server-amd64.iso loopdir
 
 6. 卸载iso镜像
 
-```linux
+```bash
 sudo umount loopdir
 ```
 
 7. 进入目标工作目录
 
-```linux
+```bash
 cd cd/
 ```
 8. 编辑Ubuntu安装引导界面增加一个新菜单项入口
 
-```linux
+```bash
 vim isolinux/txt.cfg
 ```
 
@@ -204,7 +192,7 @@ vim isolinux/txt.cfg
 
 1. 添加以下内容到该文件后强制保存退出
 
-```
+```bash
 label autoinstall
   menu label ^Auto Install Ubuntu Server
   kernel /install/vmlinuz
@@ -215,13 +203,13 @@ label autoinstall
 
 10. 修改配置缩短超时等待时间 
 
-```linux
+```bash
 sudo vi isolinux/isolinux.cfg
 ```
 
 11. 修改timeout为10
 
-```linux
+```bash
 timeout 10
 ```
 
@@ -261,7 +249,7 @@ mkisofs -r -V "Custom Ubuntu Install CD" \
 
 安装genisoimage
 
-```
+```bash
 apt-get update
 apt-get install genisoimage
 ```
@@ -296,7 +284,31 @@ apt-get install genisoimage
 安装时长：12分钟
 视频时长：1分40秒
 
-[presseed.cfg文件对照暂时来不及了，之后再补上]
+---
+### 4. preseed文件比对
+
+**比对结果**：https://www.diffchecker.com/y0KstW5Z
+官方文本|老师提供|作用
+---|---|---
+for stretch|for xenial|支持版本不同，xenial是16.04版
+ #d-i localechooser/supported-locales multiselect en_US.UTF-8, zh_CN.UTF-8 | d-i localechooser/supported-locales multiselect en_US.UTF-8, zh_CN.UTF-8<br>d-i pkgsel/install-language-support boolean false|安装字符集（语言、地区、编码），跳过语言支持问题
+ #d-i netcfg/link_wait_timeout string 10|d-i netcfg/link_wait_timeout string 5|设定链路检测等待超时时长为5秒
+ #d-i netcfg/dhcp_timeout string 60|d-i netcfg/dhcp_timeout string 5|设定dhcp服务等待超时事件为5秒
+ #d-i netcfg/disable_autoconfig boolean true|d-i netcfg/disable_autoconfig boolean true|设置手动配置网络
+ IPv4 example<br>#d-i netcfg/get_ipaddress string 192.168.1.42<br>#d-i netcfg/get_netmask string 255.255.255.0<br>#d-i netcfg/get_gateway string 192.168.1.1<br>#d-i netcfg/get_nameservers string 192.168.1.1<br>#d-i netcfg/confirm_static boolean true|IPv4 example<br>d-i netcfg/get_ipaddress string 192.168.138.42<br>d-i netcfg/get_netmask string 255.255.255.0<br>d-i netcfg/get_gateway string 192.168.138.1<br>d-i netcfg/get_nameservers string 192.168.138.1<br>d-i netcfg/confirm_static boolean true|配置ip地址、网络掩码、网关、域名解析服务器
+ d-i netcfg/get_hostname string unassigned-hostname<br>d-i netcfg/get_domain string unassigned-domain|d-i netcfg/get_hostname string svr.sec.cuc.edu.cn<br>d-i netcfg/get_domain string dns.sec.cuc.edu.cn|设置主机名、域名
+ #d-i netcfg/hostname string somehost|d-i netcfg/hostname string isc-vm-host|设置主机名
+ #d-i mirror/suite string stretch<br>#d-i mirror/udeb/suite string stretch|d-i mirror/suite string xenial<br>d-i mirror/udeb/suite string xenial|设置要安装的套件
+ #d-i passwd/user-fullname string Ubuntu User<br>#d-i passwd/username string ubuntu<br>#d-i passwd/user-password password insecure<br>#d-i passwd/user-password-again password insecure|d-i passwd/user-fullname string cuc<br>d-i passwd/username string cuc<br>d-i passwd/user-password password sec.cuc.edu.cn<br>d-i passwd/user-password-again password sec.cuc.edu.cn|创建普通用户，并设置用户名密码
+ d-i time/zone string US/Eastern|d-i time/zone string Asia/Shanghai|设置时区
+ #d-i partman-auto/init_automatically_partition select biggest_free|d-i partman-auto/init_automatically_partition select biggest_free|初始化分区选择最大
+ #d-i partman-auto-lvm/guided_size string max|d-i partman-auto-lvm/guided_size string max|LVM分区选择最大
+ d-i partman-auto/choose_recipe select atomic|d-i partman-auto/choose_recipe select multi|选择分区方式为multi
+ #d-i apt-setup/use_mirror boolean false|d-i apt-setup/use_mirror boolean false|不使用网络镜像tasksel tasksel/first multiselect ubuntu-desktop|tasksel tasksel/first multiselect server|选择安装版本
+ #d-i pkgsel/include string openssh-server build-essential|d-i pkgsel/include string openssh-server|安装openssh-server
+ #d-i pkgsel/upgrade select none|d-i pkgsel/upgrade select none|禁止自动升级
+ d-i pkgsel/update-policy select none|d-i pkgsel/update-policy select unattended-upgrades|pkgsel包更新策略选择无人值守升级
+
 
 ## 参考资料
 
@@ -306,11 +318,13 @@ apt-get install genisoimage
 
 3. [项目：ssh免密远程登录搭建（一）](https://www.cnblogs.com/creater-wei/p/9859098.html)
 
-4. https://github.com/CUCCS/linux-2019-cloud0606/blob/lab1/lab1/实验报告.md
 
-5. https://github.com/CUCCS/linux-2019-cloud0606/blob/lab1/lab1/实验报告.md
+4.  [揭大佬作业参考](https://github.com/20LinuxManagement/assignment-01-YanhuiJessica/tree/master/assignment-0x01)
 
-6. https://github.com/20LinuxManagement/assignment-01-YanhuiJessica/tree/master/assignment-0x01
 
-7. https://blog.csdn.net/qq_31989521/article/details/58600426
+5. [作业参考2](https://github.com/CUCCS/linux-2019-cloud0606/blob/lab1/lab1/实验报告.md)
+
+6. [作业参考3](https://github.com/CUCCS/linux-2019-cloud0606/blob/lab1/lab1/实验报告.md)
+
+7. [无人值守Linux安装镜像制作](https://blog.csdn.net/qq_31989521/article/details/58600426)
 
