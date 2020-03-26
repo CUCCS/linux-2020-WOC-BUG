@@ -228,7 +228,7 @@ timeout 10
 
 14.
 
-```
+```bash
 #封闭改动后的目录到.iso
 IMAGE=custom.iso
 BUILD=~/cd/
