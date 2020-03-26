@@ -305,7 +305,8 @@ for stretch|for xenial|支持版本不同，xenial是16.04版
  #d-i partman-auto/init_automatically_partition select biggest_free|d-i partman-auto/init_automatically_partition select biggest_free|初始化分区选择最大
  #d-i partman-auto-lvm/guided_size string max|d-i partman-auto-lvm/guided_size string max|LVM分区选择最大
  d-i partman-auto/choose_recipe select atomic|d-i partman-auto/choose_recipe select multi|选择分区方式为multi
- #d-i apt-setup/use_mirror boolean false|d-i apt-setup/use_mirror boolean false|不使用网络镜像tasksel tasksel/first multiselect ubuntu-desktop|tasksel tasksel/first multiselect server|选择安装版本
+ #d-i apt-setup/use_mirror boolean false|d-i apt-setup/use_mirror boolean false|不使用网络镜像
+ tasksel tasksel/first multiselect ubuntu-desktop|tasksel tasksel/first multiselect server|选择安装版本
  #d-i pkgsel/include string openssh-server build-essential|d-i pkgsel/include string openssh-server|安装openssh-server
  #d-i pkgsel/upgrade select none|d-i pkgsel/upgrade select none|禁止自动升级
  d-i pkgsel/update-policy select none|d-i pkgsel/update-policy select unattended-upgrades|pkgsel包更新策略选择无人值守升级
