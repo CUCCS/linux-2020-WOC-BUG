@@ -19,8 +19,8 @@
 
 ## 实验步骤
 1. 注册asciinema，并在本地配置
-   ![install](.\img\install asciinema.png)
-   ![asciinema auth](.\img\asciinema auth.png)
+   ![install](./img/install.png)
+   ![asciinema auth](./img/auth.png)
 
 2. 用asciinema录制vimtutor过程
 
