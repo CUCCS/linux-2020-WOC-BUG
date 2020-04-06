@@ -23,20 +23,20 @@
    ![asciinema auth](./img/auth.png)
 
 2. 用asciinema录制vimtutor过程
-
-   [Lesson_1](https://asciinema.org/a/Y4t194LRPPyFp2x2kmJUEahJI)
-
-   [Lesson_2](https://asciinema.org/a/6ih6Jo0oPLuu25aDUOtsFbflR)
-
-   [Lesson_3](https://asciinema.org/a/MBsCj16up8gIefGaVqGE1srtS)
-
-   [Lesson_4](https://asciinema.org/a/zFFoFl3CZzKEwkOjj1uqDVUNr)
-
-   [Lesson_5](https://asciinema.org/a/CAXjiCIh5R7HBomBibopRlHpg)
-
-   [Lesson_6](https://asciinema.org/a/HQvH6ATcg56pL6OMfTrgwC5dQ)
-
-   [Lesson_7](https://asciinema.org/a/tZqn9M6gavtldbgw6iGCdq4X1)
+  **Lesson 1**
+  <a href="https://asciinema.org/a/Y4t194LRPPyFp2x2kmJUEahJI" target="_blank"><img src="./img/Lesson1.png" /></a>
+  **Lesson 2**
+  <a href="https://asciinema.org/a/6ih6Jo0oPLuu25aDUOtsFbflR" target="_blank"><img src="./img/Lesson2.png" /></a>
+  **Lesson 3**
+  <a href="https://asciinema.org/a/MBsCj16up8gIefGaVqGE1srtS" target="_blank"><img src="./img/Lesson3.png" /></a>
+  **Lesson 4**
+  <a href="https://asciinema.org/a/zFFoFl3CZzKEwkOjj1uqDVUNr" target="_blank"><img src="./img/Lesson4.png" /></a>
+  **Lesson 5**
+  <a href="https://asciinema.org/a/CAXjiCIh5R7HBomBibopRlHpg" target="_blank"><img src="./img/Lesson5.png" /></a>
+  **Lesson 6**
+  <a href="https://asciinema.org/a/HQvH6ATcg56pL6OMfTrgwC5dQ" target="_blank"><img src="./img/Lesson6.png" /></a>
+  **Lesson 6**
+  <a href="https://asciinema.org/a/tZqn9M6gavtldbgw6iGCdq4X1" target="_blank"><img src="./img/Lesson7.png" /></a>
 
 ---
 
