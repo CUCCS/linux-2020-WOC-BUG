@@ -46,19 +46,20 @@ $ sudo systemctl rescue
 
 ### Systemd 3.2-3.6 
 
-### <a href="https://asciinema.org/a/2f7ma5ZpWAr0tqGSM8AOMeoL8" target="_blank"><img src="./img/3.2-3.6.png" /></a>
+<a href="https://asciinema.org/a/2f7ma5ZpWAr0tqGSM8AOMeoL8" target="_blank"><img src="./0x03/img/3.2-3.6.png" /></a>
 
 
 
 ### Systemd 4.1-4.4
 
-### <a href="https://asciinema.org/a/CQBkCCAvLOquYePbbOtOKnCna" target="_blank"><img src="./img/4.1-4.4.png" /></a>
+<a href="https://asciinema.org/a/CQBkCCAvLOquYePbbOtOKnCna" target="_blank"><img src="./0x03/img/4.1-4.4.png" /></a>
 
 
 
 ### Systemd 5-7
 
-<a href="https://asciinema.org/a/JuOc579GetzskWs0ZYsZPtS22" target="_blank"><img src="./img/5.1-7.png" /></a>
+<a href="https://asciinema.org/a/JuOc579GetzskWs0ZYsZPtS22" target="_blank">
+<img src="./0x03/img/5-7.png" /></a>
 
 
 
