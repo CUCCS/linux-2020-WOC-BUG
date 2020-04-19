@@ -669,8 +669,37 @@ $ sudo systemctl restart foobar
 </details>
 
 <a href="https://asciinema.org/a/iwIsSf7gcLPFpTqb1VcYl1w09" target="_blank"><img src="./img/实战篇.png" /></a>
+
 ---
 
+### 自查清单
+* **如何添加一个用户并使其具备sudo执行程序的权限？**
+  ``adduser <username>``
+  ``<username>   ALL=(ALL)    ALL``
+* **如何将一个用户添加到一个用户组？**
+  ``usermod -a -G <groupname> <username>``  
+* **如何查看当前系统的分区表和文件系统详细信息？**
+  ```bash
+  sudo fdisk -l    #列出磁盘分区基本信息
+  df -h  #以更易读的方式显示目前磁盘空间和使用情况
+  ```
+* **如何实现开机自动挂载Virtualbox的共享目录分区？**
+  在文件 /etc/rc.local 中（用root用户）追加如下命令：
+  ``mount -t vboxsf sharing /mnt/share``
+* **基于LVM（逻辑分卷管理）的分区如何实现动态扩容和缩减容量？**
+  ```bash
+  lvextend -L +<容量> <目录>    #增加空间
+  lvreduce -L -<容量> <目录>    #减少空间
+  ```
+* **如何通过systemd设置实现在网络连通时运行一个指定脚本，在网络断开时运行另一个脚本？**
+  [service]模块中设置
+  ```bash
+  ExecStartPost=<路径1> post1  #设置启动服务之后执行的命令
+  ExecStopPost=<路径2> post2  #设置停止服务之后执行的命令
+  ```
+* **如何通过systemd设置实现一个脚本在任何情况下被杀死之后会立即重新启动？实现杀不死？**
+  [service]区块中设置
+  ``Restart=always``
 
 ---
 
@@ -710,3 +739,8 @@ $ sudo systemctl restart foobar
    **解决办法**：
    使用``shutdown -f``
    
+---
+### 参考文献
+[VirtualBox 共享文件夹设置 及 开机自动挂载](https://blog.csdn.net/gao1440156051/article/details/51590026)
+[Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+[Systemd 入门教程：实战篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
