@@ -17,6 +17,8 @@ asciinema
 ### 一、Systemd 入门教程：命令篇
 
 ### 3.1 systemctl
+<details>
+<summary>代码</summary>
 
 ```bash
 
@@ -42,7 +44,7 @@ $ sudo systemctl hybrid-sleep
 $ sudo systemctl rescue
 ```
 
-
+</details>
 
 ### Systemd 3.2-3.6 
 
