@@ -744,3 +744,4 @@ $ sudo systemctl restart foobar
 [VirtualBox 共享文件夹设置 及 开机自动挂载](https://blog.csdn.net/gao1440156051/article/details/51590026)
 [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 [Systemd 入门教程：实战篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
+[ljy的实验报告](https://github.com/CUCCS/linux-2020-LyuLumos/blob/ch0x03/ch0x03/report3.md)
