@@ -8,7 +8,9 @@ script:
         - bash test.sh
         - ls -l
         - pwd
-        - cat file
+        - cat 0x04/ImageProvessing.sh
+        - cat 0x04/WorldCup.sh
+        - cat 0x04/VisLog.sh
 
 notifications:
         email:
