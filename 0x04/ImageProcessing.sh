@@ -17,14 +17,14 @@ Usage:
 	This script is to operate on the pictures,such as compressing the images,adding water mark on the pictures,converting the format of pictures,add prefix or suffix name to the pictures and so on.
 	NOTE:you must use -f file first,then use -m,-p,-s,-q,-r options.For example:bash ${tOOL_NAME} -f file -p prefix -s suffix.
 Options:
-	-h,             show this help info
-	-c file/path,   convert png/svg images to jpg images
-	-f file/path,	input the file name or the path of the file
-	-m file/path,	add warter mark to the file,the warter mark is the image "img/watermark.png"
-	-p prefix,	add prefix name to the file,this option must use with -f file option
-	-s suffix,	add suffix name to the file,this option must use with -f file option
-	-q quality,	compress the quality,this option must use with -f file option
-	-r pixel,	compress the resolving power.input the horizontal pixel,the vertical pixel will change in proportion, this option must use with -f file option
+	-h,             		show this help info
+	-c file/path,   		convert png/svg images to jpg images
+	-f file/path,			input the file name or the path of the file
+	-m file/path watermark_path,	add warter mark to the file,the warter mark is the image "img/watermark.png"
+	-p prefix,			add prefix name to the file,this option must use with -f file option
+	-s suffix,			add suffix name to the file,this option must use with -f file option
+	-q quality,			compress the quality,this option must use with -f file option
+	-r pixel,			compress the resolving power.input the horizontal pixel,the vertical pixel will change in proportion, this option must use with -f file option
 EOF
 
 }
@@ -212,16 +212,17 @@ function convert_type(){
 
 ## 添加水印
 function add_water_mark(){
+	WaterMark="$1"
 	if [[ -d ${FILE_PATH} ]]
 	then
 		for file in ${FILE_PATH}/*;do
 			add_prefix_name "${file}" "marked"
-			composite -gravity center img/watermark.png  "${file}" "${NEW_FILE}"
+			composite -gravity center "${WaterMark}"  "${file}" "${NEW_FILE}"
 			#convert ${file} img/watermark.png -gravity center ${NEW_FILE}
 		done
 	else
 		add_prefix_name "${FILE_PATH}" "marked"
-		composite -gravity center img/watermark.png "${FILE_PATH}" "${NEW_FILE}"
+		composite -gravity center "${WaterMark}" "${FILE_PATH}" "${NEW_FILE}"
 		#convert "${FILE_PATH}" img/watermark.png -gravity center "${NEW_FILE}"
 	fi
 }
@@ -243,7 +244,7 @@ function main(){
 				shift;;
 			-m)		#添加水印
 				input_file "$2"
-				add_water_mark
+				add_water_mark "$3"
 				shift;;
 			-p)
 				if [[ -d ${FILE_PATH} ]]

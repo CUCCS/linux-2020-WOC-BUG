@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-FILE_PATH="./data/worldcupplayerinfo.tsv"
+FILE_PATH="$1"
+#FILE_PATH="data/worldcupplayerinfo.tsv"
 sum=0
 
 ## 年龄段

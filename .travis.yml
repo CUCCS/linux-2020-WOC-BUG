@@ -1,0 +1,21 @@
+language: bash
+
+before_install:
+        - sudo apt-get update && sudo apt-get install -y shellcheck
+
+script:
+        - ls -l
+        - bash test.sh
+        - ls -l
+        - pwd
+        - echo "==================== TASK1 ===================="
+        - cat 0x04/ImageProcessing.sh
+        - echo "==================== TASK2 ===================="
+        - cat 0x04/WorldCup.sh
+        - echo "==================== TASK3 ===================="
+        - cat 0x04/VisLog.sh
+
+notifications:
+        email:
+                on_success: never
+
