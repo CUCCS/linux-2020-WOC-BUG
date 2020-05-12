@@ -6,4 +6,6 @@ for file in ./*.sh;do
         fi
         printf "==================== %s ====================\n" "$file"
         bash "$file"
+	printf "-------------------- %s --------------------\n" "$file"
+	shellcheck "$file"
 done

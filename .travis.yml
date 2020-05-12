@@ -8,8 +8,11 @@ script:
         - bash test.sh
         - ls -l
         - pwd
-        - cat 0x04/ImageProvessing.sh
+        - echo "==================== TASK1 ===================="
+        - cat 0x04/ImageProcessing.sh
+        - echo "==================== TASK2 ===================="
         - cat 0x04/WorldCup.sh
+        - echo "==================== TASK3 ===================="
         - cat 0x04/VisLog.sh
 
 notifications:
