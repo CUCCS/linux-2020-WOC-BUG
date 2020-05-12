@@ -16,4 +16,4 @@ printf "-------------------- shellcheck --------------------"
 shellcheck 0x04/WorldCup.sh
 
 printf "==================== task3 ====================\n"
-cat 0x04/result_task3.txt
+cat 0x04/result_task3.md
