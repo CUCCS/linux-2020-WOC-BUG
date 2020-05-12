@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for file in ./*.sh;do
+for file in ./0x04/*.sh;do
         if [[ $file =~ $0 ]];then
                 continue
         fi
