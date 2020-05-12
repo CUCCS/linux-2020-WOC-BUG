@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-FILE_PATH="./data/web_log.tsv"
+FILE_PATH="data/web_log.tsv"
 
 function top100_host(){
 	echo "访问来源主机TOP 100和分别对应出现的总次数:"
