@@ -5,7 +5,7 @@ before_install:
 
 script:
         - ls -l
-        - bash 0x04/test.sh
+        - bash test.sh
         - ls -l
         - pwd
         - echo "==================== TASK1 ===================="

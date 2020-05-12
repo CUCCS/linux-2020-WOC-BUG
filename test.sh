@@ -11,7 +11,7 @@ printf "-------------------- shellcheck --------------------"
 shellcheck 0x04/ImageProcessing.sh
 
 printf "==================== task2 ====================\n"
-bash 0x04/WorldCup.sh
+bash 0x04/WorldCup.sh 0x04/data/worldcupplayerinfo.tsv
 printf "-------------------- shellcheck --------------------"
 shellcheck 0x04/WorldCup.sh
 
