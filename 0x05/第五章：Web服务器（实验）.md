@@ -37,12 +37,20 @@ Host-Only IP：192.168.56.101
 
 
 # 实验步骤
+（以下步骤均在root权限下操作）
+
+<details>
+
+**<summary>Part 0 初始操作</summary>**
 
 配置本地host文件，路径在C:\Windows\System32\drivers\etc
 ![](./img/host.png)
 
+</details>
 
-以下步骤均在root权限下操作
+<details>
+
+**<summary>Part 1 基本要求</summary>**
 
 ## 一、基本要求
 
@@ -286,13 +294,17 @@ server {
 来到管理页面, 添加一条Scheme Lock，并保存。
 ![](./img/scheme_lock.png)
 
-此时访问wp.sec.cuc.edu.cn时便会自动跳转至https://wp.sec.cuc.edu.cn了
+此时便能访问https://wp.sec.cuc.edu.cn了
 
 ![](./img/not_safe.png)
 坚持访问网站：
 ![](./img/https.png)
 
----
+</details>
+
+<details>
+
+**<summary>Part 2 安全加固要求</summary>**
 
 
 
@@ -348,7 +360,7 @@ server {
 
 ![](./img/not_white_list.png)
 
-
+（特殊字符似乎显示有点问题）
 
 ---
 
@@ -382,10 +394,11 @@ server {
 
 ![](./img/sql_filter.png)
 
+</details>
 
+<details>
 
----
-
+**<summary>Part 3 VeryNginx配置要求</summary>**
 
 
 ## 三、VERYNGINX配置要求
@@ -435,6 +448,8 @@ server {
 进行压测，然而不知道是什么原因，并没有被限制，依旧跑通了，尚未解决。
 
 ![wrong_answer](./img/wrong_answer.png)
+
+</details>
 
 # 遇到问题及解决方案
 1. **无法访问 wp.sec.cuc.edu.cn**
