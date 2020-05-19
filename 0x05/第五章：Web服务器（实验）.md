@@ -1,3 +1,5 @@
+[TOC]
+
 # 实验环境
 
 ubuntu 18.04.4
@@ -14,7 +16,7 @@ Host-Only IP：192.168.56.101
 * √ 安装VeryNginx
 * √ 安装配置Wordpress
 * √ DVWA
-* × 启用https
+* √ 启用https
 
 ## Part 2 安全加固要求
 * √ 使用IP地址方式均无法访问上述任意站点，并向访客展示自定义的友好错误提示信息页面-1
@@ -39,6 +41,9 @@ Host-Only IP：192.168.56.101
 配置本地host文件，路径在C:\Windows\System32\drivers\etc
 ![](./img/host.png)
 
+
+以下步骤均在root权限下操作
+
 ## 一、基本要求
 
 ### 在一台主机（虚拟机）上同时配置[Nginx](http://nginx.org/)和[VeryNginx](https://github.com/alexazhou/VeryNginx)
@@ -48,12 +53,12 @@ Host-Only IP：192.168.56.101
 
 ```bash
 ## 安装nginx
-sudo apt-get update
-sudo apt-get install nginx -y
+apt-get update
+apt-get install nginx -y
 
 ## 安装verynginx
-sudo nginx -s stop
-sudo apt install -y libpcre3-dev libssl1.0-dev zlib1g-dev python3 unzip gcc make
+nginx -s stop
+apt install -y libpcre3-dev libssl1.0-dev zlib1g-dev python3 unzip gcc make
 wget https://github.com/alexazhou/VeryNginx/archive/master.zip
 unzip master.zip		# 解压
 cd VeryNginx-master/
@@ -81,41 +86,44 @@ verynginx		# 启动verynginx
 ```bash
 # WordPress需要用到数据库，所以我们要用mysql创建WordPress所需要的库
 # 下载安装mysql和php7.2相关软件
-sudo apt install -y mysql-server php7.2-fpm php7.2-mysql php7.2-gd
+apt install -y mysql-server php7.2-fpm php7.2-mysql php7.2-gd
 # 安装完成后进入root用户
 # mysql root 用户默认没有密码
-sudo mysql -u root -p
-# 进入mysql后之后，创建WordPress使用的数据库
+mysql -u root -p
+```
 
+进入mysql后之后，创建WordPress使用的数据库
+```sql
 mysql> CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpress';
-mysql> CREATE DATABASE wp_db;
-mysql> GRANT ALL ON wp_db.* TO 'wordpress'@'localhost';
-# 指定WorePress目录
+mysql> CREATE DATABASE wordpress_db;
+mysql> GRANT ALL ON wordpress_db.* TO 'wordpress'@'localhost';
+```
+![](./img/database.png)
+
+```bash
+# 指定WordPress目录
 WP_PATH=/var/www/wordpress
 # 创建该目录下的public文件夹
-sudo mkdir -p ${WP_PATH}/public/
+mkdir -p ${WP_PATH}/public/
 # 修改该文件下的所有者为www-data
-sudo chown -R www-data:www-data ${WP_PATH}/public
+chown -R www-data:www-data ${WP_PATH}/public
 # 下载并解压WorePress
 wget https://wordpress.org/wordpress-4.7.zip
 unzip wordpress-4.7.zip
 # 将wordpress文件全部拷贝刚才的public中
-sudo cp -r wordpress/* ${WP_PATH}/public/
+cp -r wordpress/* ${WP_PATH}/public/
 cd ${WP_PATH}/public/
-```
-
-```bash
 # 拷贝配置文件
-sudo cp wp-config-sample.php wp-config.php
+cp wp-config-sample.php wp-config.php
 # 修改wp-config.php文件中的`database_name_here`,`username_here`和`password_here`字段为我们的数据库名称，用户名和密码。使wordpress能够访问mysql。
 
 ```
 ![](./img/copy.png)
 
 ```
-sudo sed -i s/database_name_here/wordpress_db/ wp-config.php
-sudo sed -i s/username_here/wordpress/ wp-config.php
-sudo sed -i s/password_here/wordpress/ wp-config.php
+sed -i s/database_name_here/wordpress_db/ wp-config.php
+sed -i s/username_here/wordpress/ wp-config.php
+sed -i s/password_here/wordpress/ wp-config.php
 ```
 ![](./img/set_name.png)
 
@@ -127,7 +135,7 @@ sudo sed -i s/password_here/wordpress/ wp-config.php
 # 新建配置文件，设置端口8080和文件名wp.sec.cuc.edu.cn
 WP_DOMAIN=wp.sec.cuc.edu.cn
 WP_PORT=8080
-sudo tee /etc/nginx/sites-available/${WP_DOMAIN} << EOF
+tee /etc/nginx/sites-available/${WP_DOMAIN} << EOF
 server {
     listen localhost:${WP_PORT};
     server_name ${WP_DOMAIN};
@@ -146,10 +154,10 @@ server {
 }
 EOF
 # 在sites-enabled中创建sites-available的软链接，并删除default
-sudo ln -s /etc/nginx/sites-available/${WP_DOMAIN} /etc/nginx/sites-enabled/
-sudo rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/${WP_DOMAIN} /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
 # 启动nginx
-sudo nginx
+nginx
 ```
 
 ---
@@ -165,10 +173,6 @@ sudo nginx
 **添加Up Stream和Proxy Pass**：
 
 ![](./img/Up_Stream.png)
-
-**这里保存不成功的解决方法**：
-
-用 chmod -R 777 /opt/verynginx/verynginx/configs改变权限
 
 **页面加载成功**：
 
@@ -194,23 +198,23 @@ sudo nginx
 
 与WordPress步骤类似
 
-```
+```bash
 # 指定目录，更改所有者
 DVWA_PATH=/var/www/dvwa
-sudo mkdir -p ${DVWA_PATH}/public/
-sudo chown -R www-data:www-data ${DVWA_PATH}/public
+mkdir -p ${DVWA_PATH}/public/
+chown -R www-data:www-data ${DVWA_PATH}/public
 
 # 下载解压
 wget https://github.com/ethicalhack3r/DVWA/archive/master.zip
 unzip master.zip
 # 拷贝文件到/var/www/dvwa下
-sudo cp -r DVWA-master/* ${DVWA_PATH}/public/
+cp -r DVWA-master/* ${DVWA_PATH}/public/
 cd ${DVWA_PATH}/public/
-sudo cp config/config.inc.php.dist config/config.inc.php
+cp config/config.inc.php.dist config/config.inc.php
 # 配置文件,8000端口
 DVWA_DOMAIN=dvwa.sec.cuc.edu.cn
 DVWA_PORT=8000
-sudo tee /etc/nginx/sites-available/${DVWA_DOMAIN} << EOF
+tee /etc/nginx/sites-available/${DVWA_DOMAIN} << EOF
 server {
     listen localhost:${DVWA_PORT};
     server_name ${DVWA_DOMAIN};
@@ -229,9 +233,9 @@ server {
 }
 EOF
 # 设置软链接
-sudo ln -s /etc/nginx/sites-available/${DVWA_DOMAIN} /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/${DVWA_DOMAIN} /etc/nginx/sites-enabled/
 # 重新载入配置
-sudo nginx -s reload
+nginx -s reload
 ```
 
 和之前的步骤类似：
@@ -252,23 +256,17 @@ sudo nginx -s reload
 
 ### WordPress启用HTTPS
 
-本实验中，localhost网站使用的证书和verynginx对外使用的证书，我使用的是tsyitc
-
+使用OpenSSL生成自签名证书
+```bash
+openssl req -x509 -newkey rsa:4096 -nodes -subj "/C=CN/ST=Beijing/L=Beijing/O=CUC/OU=SEC/CN=wp.sec.cuc.edu.cn" -keyout key.pem -out cert.pem -days 365
 ```
-# 生成自签名证书
-sudo openssl req -x509 -newkey rsa:4096 -nodes -subj "/C=CN/ST=Beijing/L=Beijing/O=CUC/OU=SEC/CN=wp.sec.cuc.edu.cn" -keyout key.pem -out cert.pem -days 365
-# 将生成的cert.pem和key.pem放在/etc/nginx目录下
-sudo mv cert.pem /etc/nginx/
-sudo mv key.pem /etc/nginx/
-# 修改/etc/nginx/sites-available/wp.sec.cuc.edu.cn 中的8080端口为”8443 ssl"
-sudo sed -i "2s/8080/8443\ ssl" wp.sec.cuc.edu.cn
-# 在第二行后添加cert.pem和key.pem
-sudo sed -i '2a ssl_certificate      /etc/nginx/cert.pem;\nssl_certificate_key  /etc/nginx/key.pem;' wp.sec.cuc.edu.cn
+得到key.pem与cert.pem. 将其放在/etc/nginx/目录下
+```bash
+mv cert.pem /etc/nginx/cert.pem
+mv key.pem /etc/nginx/key.pem
 ```
-
-在`/opt/verynginx/openresty/nginx/conf/nginx.conf`中修改server块，使verynginx监听443端口
-
-```
+修改VeryNginx目录下的配置文件nginx.conf, 将server块如下修改使其同时监听80端口与443端口且只在443端口开启HTTPS验证
+```bash
 server {
     listen 80;
     listen 443 ssl;
@@ -284,19 +282,21 @@ server {
     }
 }
 ```
+使用verynginx -t确认配置文件正确
+来到管理页面, 添加一条Scheme Lock，并保存。
+![](./img/scheme_lock.png)
 
-重新加载配置文件
+此时访问wp.sec.cuc.edu.cn时便会自动跳转至https://wp.sec.cuc.edu.cn了
 
-```
-sudo nginx -s reload
-sudo verynginx -s reload
-```
+![](./img/not_safe.png)
+坚持访问网站：
+![](./img/https.png)
 
 ---
 
 
 
-## 安全加固
+## 二、安全加固
 
 ### 使用IP地址方式均无法访问上述任意站点，并向访客展示自定义的友好错误提示信息页面-1
 
@@ -388,7 +388,7 @@ sudo verynginx -s reload
 
 
 
-## Part 3 VERYNGINX配置要求
+## 三、VERYNGINX配置要求
 
 ### VeryNginx的Web管理页面仅允许白名单上的访客来源IP，其他来源的IP访问均向访客展示自定义的友好错误提示信息页面-3
 
@@ -435,6 +435,18 @@ sudo verynginx -s reload
 进行压测，然而不知道是什么原因，并没有被限制，依旧跑通了，尚未解决。
 
 ![wrong_answer](./img/wrong_answer.png)
+
+# 遇到问题及解决方案
+1. **无法访问 wp.sec.cuc.edu.cn**
+   忘记启动nginx
+2. **VeryNginx配置保存不成功**：
+    用 chmod -R 777 /opt/verynginx/verynginx/configs改变权限
+3. **配置使用ip地址的形式无法访问网站，结果把自己也阻挡在外**
+   将/opt/verynginx/verynginx/configs/config.json的这里改成false即可：
+    ![](./img/enable.png)
+4. **配置成功后无法使用https访问网站**
+   是浏览器的防护措施，坚持访问即可跳转
+   但奇怪的是，我配置的是only https访问，输入网址后默认进入的仍然是http访问，得手动输入https才能跳转过去，而且https访问的网站页面格式有些错乱。
 
 # 参考文献
 
