@@ -366,15 +366,15 @@ server {
 
 添加`Matcher`
 
-![](C:\Users\HP\Desktop\img\username_enumeration.png)
+![](./img/username_enumeration.png)
 
 添加`Filter`,报错信息为404，无需添加response
 
-![](C:\Users\HP\Desktop\img\404.png)
+![](./img/404.png)
 
 效果：
 
-![](C:\Users\HP\Desktop\img\404_not_found.png)
+![](./img/404_not_found.png)
 
 
 
