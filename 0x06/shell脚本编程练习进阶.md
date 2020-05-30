@@ -24,19 +24,29 @@ ftp服务器软件选用vsftpd
 
 远程登录到目的主机，拷贝并运行vsftpd.sh文件，进行vsftpd的安装和配置。
 
+
+
 <img src="./img/bash_vsftpd.png" style="zoom:80%;" align="left"/>
 
 我这里由于多次调试，所以显示文件已存在。
 
 退回到工作主机进行匿名登录：
 
+
+
 <img src="./img/anonymous.png" style="zoom:80%;" align="left"/>
 
+
+
 * **配置一个提供匿名访问的FTP服务器，匿名访问者可以访问1个目录且仅拥有该目录及其所有子目录的只读访问权限：**
+
+
 
 <img src="./img/authority.png" style="zoom:65%;" align="left"/>
 
 <img src="./img/authority2.png" style="zoom:80%;" align="left"/>
+
+
 
 -  **配置一个支持用户名和密码方式访问的账号，该账号继承匿名访问者所有权限，且拥有对另1个独立目录及其子目录完整读写（包括创建目录、修改文件、删除文件等）权限：**
   
@@ -52,21 +62,31 @@ ftp服务器软件选用vsftpd
   
   <img src="./img/get_and_put.png" style="zoom:70%;" align="left"/>
   
+  
+  
   test.txt被成功get到工作主机上：
   
   <img src="./img/get_success.png" style="zoom:75%;" align="left"/>
+  
+  
   
   hello.sh被成功put到目标主机上：
   
   <img src="./img/put_success.png" style="zoom:110%;" align="left"/>
   
+  
+  
   删除文件和创建文件夹成功：
   
   <img src="./img/delete_mkdir.png" style="zoom:85%;" align="left"/>
 
+
+
 * **FTP用户不能越权访问指定目录之外的任意其他目录和文件：**
 
   <img src="./img/changedir.png" style="zoom:110%;" align="left"/>
+
+  
 
 * **匿名访问权限仅限白名单IP来源用户访问，禁止白名单IP以外的访问：**
 
@@ -82,15 +102,23 @@ ftp服务器软件选用vsftpd
 
 <img src="./img/install.png" style="zoom:75%;" align="left"/>
 
+
+
 <img src="./img/nfs_server.png" style="zoom:70%;" align="left"/>
+
+
 
 工作主机上运行nfs_c.sh：
 
 <img src="./img/install2.png" style="zoom:75%;" align="left"/>
 
+
+
 * **在1台Linux上配置NFS服务，另1台电脑上配置NFS客户端挂载2个权限不同的共享目录，分别对应只读访问和读写访问权限**
 
   <img src="./img/touch.png" style="zoom:80%;" align="left"/>
+
+  
 
 * **实验报告中请记录你在NFS客户端上看到的：**
 
@@ -98,9 +126,13 @@ ftp服务器软件选用vsftpd
   
     <img src="./img/info.png" style="zoom:70%;" align="left"/>
   
+    
+  
   - **你通过NFS客户端在NFS共享目录中新建的目录、创建的文件的属主、权限信息**
   
     <img src="./img/info2.png" style="zoom:70%;" align="left"/>
+  
+    
   
   - **上述共享目录中文件、子目录的属主、权限信息和在NFS服务器端上查看到的信息一样吗？无论是否一致，请给出你查到的资料是如何讲解NFS目录中的属主和属主组信息应该如何正确解读**
   
@@ -109,6 +141,8 @@ ftp服务器软件选用vsftpd
     [资料1](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-18-04),[资料2](https://blog.51cto.com/yttitan/2406403)
     
     <img src="./img/reference.png" style="zoom:65%;" align="left"/>
+    
+    
     
     ---
     
