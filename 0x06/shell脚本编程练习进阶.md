@@ -16,7 +16,7 @@ Ubuntu 18.04 Server 64bit
 
 ``ssh-copy-id -i ~/.ssh/id_rsa.pub wocbugnolvm@192.168.56.102``
 
-<img src="./img/keygen.png" style="zoom:65%;" align='left'/>
+<img src="./img/keygen.png"  align='left'/>
 
 ### 一、FTP
 
@@ -26,7 +26,9 @@ ftp服务器软件选用vsftpd
 
 
 
-<img src="./img/bash_vsftpd.png" style="zoom:80%;" align="left"/>
+<img src="./img/bash_vsftpd.png"  align="left"/>
+
+
 
 我这里由于多次调试，所以显示文件已存在。
 
@@ -34,7 +36,7 @@ ftp服务器软件选用vsftpd
 
 
 
-<img src="./img/anonymous.png" style="zoom:80%;" align="left"/>
+<img src="./img/anonymous.png"  align="left"/>
 
 
 
@@ -42,9 +44,9 @@ ftp服务器软件选用vsftpd
 
 
 
-<img src="./img/authority.png" style="zoom:65%;" align="left"/>
+<img src="./img/authority.png"  align="left"/>
 
-<img src="./img/authority2.png" style="zoom:80%;" align="left"/>
+<img src="./img/authority2.png"  align="left"/>
 
 
 
@@ -54,43 +56,43 @@ ftp服务器软件选用vsftpd
   
   wocbug账号登录：
   
-  <img src="./img/wocbug.png" style="zoom:75%;" align="left" />
+  <img src="./img/wocbug.png"  align="left" />
   
   
   
   成功get和put文件：
   
-  <img src="./img/get_and_put.png" style="zoom:70%;" align="left"/>
+  <img src="./img/get_and_put.png"  align="left"/>
   
   
   
   test.txt被成功get到工作主机上：
   
-  <img src="./img/get_success.png" style="zoom:75%;" align="left"/>
+  <img src="./img/get_success.png"  align="left"/>
   
   
   
   hello.sh被成功put到目标主机上：
   
-  <img src="./img/put_success.png" style="zoom:110%;" align="left"/>
+  <img src="./img/put_success.png"  align="left"/>
   
   
   
   删除文件和创建文件夹成功：
   
-  <img src="./img/delete_mkdir.png" style="zoom:85%;" align="left"/>
+  <img src="./img/delete_mkdir.png"  align="left"/>
 
 
 
 * **FTP用户不能越权访问指定目录之外的任意其他目录和文件：**
 
-  <img src="./img/changedir.png" style="zoom:110%;" align="left"/>
+  <img src="./img/changedir.png"  align="left"/>
 
   
 
 * **匿名访问权限仅限白名单IP来源用户访问，禁止白名单IP以外的访问：**
 
-  <img src="./img/other_user.png" style="zoom:110%;" align="left"/>
+  <img src="./img/other_user.png"  align="left"/>
 
   
 
@@ -100,23 +102,19 @@ ftp服务器软件选用vsftpd
 
 在目标主机上运行nfs_s.sh：
 
-<img src="./img/install.png" style="zoom:75%;" align="left"/>
+<img src="./img/install.png" align="left"/>
 
-
-
-<img src="./img/nfs_server.png" style="zoom:70%;" align="left"/>
-
-
+<img src="./img/nfs_server.png"  align="left"/>
 
 工作主机上运行nfs_c.sh：
 
-<img src="./img/install2.png" style="zoom:75%;" align="left"/>
+<img src="./img/install2.png"  align="left"/>
 
 
 
 * **在1台Linux上配置NFS服务，另1台电脑上配置NFS客户端挂载2个权限不同的共享目录，分别对应只读访问和读写访问权限**
 
-  <img src="./img/touch.png" style="zoom:80%;" align="left"/>
+  <img src="./img/touch.png"  align="left"/>
 
   
 
@@ -124,13 +122,13 @@ ftp服务器软件选用vsftpd
 
   - **共享目录中文件、子目录的属主、权限信息**
   
-    <img src="./img/info.png" style="zoom:70%;" align="left"/>
+    <img src="./img/info.png"  align="left"/>
   
     
   
   - **你通过NFS客户端在NFS共享目录中新建的目录、创建的文件的属主、权限信息**
   
-    <img src="./img/info2.png" style="zoom:70%;" align="left"/>
+    <img src="./img/info2.png"  align="left"/>
   
     
   
@@ -140,7 +138,7 @@ ftp服务器软件选用vsftpd
     
     [资料1](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-18-04),[资料2](https://blog.51cto.com/yttitan/2406403)
     
-    <img src="./img/reference.png" style="zoom:65%;" align="left"/>
+    <img src="./img/reference.png"  align="left"/>
     
     
     
