@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-printf "===============vsftpd.sh==============\n"
-shellcheck 0x06/script/vsftpd.sh
+# printf "===============vsftpd.sh==============\n"
+# shellcheck 0x06/script/vsftpd.sh
 
 printf "==============nfs_s.sh==============\n"
 shellcheck 0x06/script/nfs_s.sh

@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/WOC-BUG/linux-2020-WOC-BUG.svg?branch=master)](https://travis-ci.com/WOC-BUG/linux-2020-WOC-BUG)
