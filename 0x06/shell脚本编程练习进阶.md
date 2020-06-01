@@ -157,7 +157,7 @@ ftp服务器软件选用vsftpd
 
 ### 三、DHCP
 
-[dhcpd.conf](./config/dhcpd.config)
+[dhcpd.conf](./config/dhcpd.conf)
 
 [isc-dhcp-server](./config/isc-dhcp-server)
 
