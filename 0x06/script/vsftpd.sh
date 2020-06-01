@@ -3,7 +3,7 @@
 apt-get update      # 更新
 
 ## 查看update命令的退出状态码 ##
-if [[ $? -ne 0 ]];then		# 如果不是0就报错
+if [[ "$?" -ne 0 ]];then		# 如果不是0就报错
                 echo "apt update failed!"
                 exit
 fi
@@ -11,7 +11,7 @@ fi
 
 ## 判断目标主机是否已安装vsftpd ##
 command -v vsftpd > /dev/null   # 重定向输出到黑洞文件，可以不显示输出仅判断操作是否正常
-if [[ $? -ne 0 ]];then
+if [[ "$?" -ne 0 ]];then
                 # 安装vsftpd
                 apt install vsftpd -y
                 if [[ $? -ne 0 ]];then
