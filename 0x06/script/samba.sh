@@ -1,13 +1,12 @@
 #!/bin/bash
 
-sudo su
-apt-get install -y samba
+sudo apt-get install -y samba
 
 smbuser="demoUser"
 smbgroup="demoGroup"
 
 # useradd -M -s /sbin/nologin "$smbuser"
-useradd -M -s $(which nologin) "$smbuser"
+sudo useradd -M -s $(which nologin) "$smbuser"
 echo "$smbuser:password" | chpasswd
 # sed -i.bak 's#^\(smbuser:\)[^:]*\(:.*\)$#\$6$0Nf0oKzZw7$LWRXlj45pDhV/KHEISQhmOLr8hux2tB1DmzPvee0UrbvaOsjbcf3pBAd4RNdzJqdMnsmvC2/FCf7hECsDLhwU/#' /etc/shadow
 (echo password; echo password) | smbpasswd -a "$smbuser"
@@ -27,14 +26,14 @@ force user = "$smbuser"
 force group = "$smbgroup"
 EOT
 
-smbpasswd -e "$smbuser"
-groupadd "$smbgroup"
-usermod -G "$smbgroup" "$smbuser"
-mkdir -p /home/samba/guest/
-mkdir -p /home/samba/demo/
-chgrp -R "$smbgroup" /home/samba/guest/
-chgrp -R "$smbgroup" /home/samba/demo/
-chmod 2775 /home/samba/guest/
-chmod 2770 /home/samba/demo/
+sudo smbpasswd -e "$smbuser"
+sudo groupadd "$smbgroup"
+sudo usermod -G "$smbgroup" "$smbuser"
+sudo mkdir -p /home/samba/guest/
+sudo mkdir -p /home/samba/demo/
+sudo chgrp -R "$smbgroup" /home/samba/guest/
+sudo chgrp -R "$smbgroup" /home/samba/demo/
+sudo chmod 2775 /home/samba/guest/
+sduo chmod 2770 /home/samba/demo/
 
-service smbd restart
+sudo service smbd restart
