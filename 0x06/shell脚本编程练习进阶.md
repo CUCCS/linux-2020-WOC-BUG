@@ -24,9 +24,9 @@ ftp服务器软件选用vsftpd
 
 远程登录到目的主机，拷贝并运行vsftpd.sh文件，进行vsftpd的安装和配置。
 
-[vstpd.sh](./script/vstpd.sh)
+[vstpd.sh](./script/vsftpd.sh)
 
-[vstpd.conf](./config/vstpd.conf)
+[vstpd.conf](./config/vsftpd.conf)
 
 <img src="./img/bash_vsftpd.png" />
 
