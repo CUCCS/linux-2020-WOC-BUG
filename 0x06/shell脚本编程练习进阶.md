@@ -102,6 +102,14 @@ ftp服务器软件选用vsftpd
 
 ### 二、NFS
 
+[nfs_c.sh](./script/nfs_c.sh)
+
+[nfs_s.sh](./script/nfs_s.sh)
+
+[exports](./config/exports)
+
+
+
 在目标主机上运行nfs_s.sh：
 
 <img src="./img/install.png" align="left"/>
@@ -149,6 +157,10 @@ ftp服务器软件选用vsftpd
 
 ### 三、DHCP
 
+[dhcpd.conf](./config/dhcpd.config)
+
+[isc-dhcp-server](./config/isc-dhcp-server)
+
 * **2台虚拟机使用Internal网络模式连接，其中一台虚拟机上配置DHCP服务，另一台服务器作为DHCP客户端，从该DHCP服务器获取网络地址配置**
 
   * client
@@ -177,7 +189,7 @@ ftp服务器软件选用vsftpd
 
       ![](./img/dhcpd_conf.png)
 
-      更改/etc/defaul/isc-dhcp-server文件：
+      更改/etc/default/isc-dhcp-server文件：
 
       ![](./img/isc-dhcp-server.png)
 
@@ -195,7 +207,9 @@ ftp服务器软件选用vsftpd
 
 ### 四、Samba
 
-​	在192.168.56.102上安装samba并配置：samba.sh，samba.conf
+​	在192.168.56.102上安装samba并配置：[samba.sh](./script/samba.sh)
+
+[samba.conf](./config/samba.conf)
 
 ![](./img/demo.png)
 
@@ -247,7 +261,13 @@ wp.sec.cuc.edu.cn A <自行填写第5章实验中配置的WEB服务器的IP地�
 dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
 ```
 
+[named.conf.options](./config/named.conf.options)
 
+[named.conf.local](./config/named.conf.local)
+
+[db.cuc.edu.cn](./config/db.cuc.edu.cn)
+
+[head](./config/head)
 
 #### server
 
