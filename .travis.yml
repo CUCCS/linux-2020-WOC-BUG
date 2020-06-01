@@ -14,6 +14,12 @@ script:
 after_script:
         	- /user/bin/shellcheck test.sh
 
+after_failure:
+	- id
+	- pwd
+	- df -h
+	- cat error.log
+
 notifications:
        	 email:
                 	on_success: never
