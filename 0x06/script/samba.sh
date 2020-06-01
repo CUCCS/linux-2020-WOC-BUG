@@ -6,7 +6,7 @@ smbuser="demoUser"
 smbgroup="demoGroup"
 
 # useradd -M -s /sbin/nologin "$smbuser"
-useradd -M -s $(which nologin) "$smbuser"
+useradd -M -s "$(which nologin)" "$smbuser"
 echo "$smbuser:password" | chpasswd
 # sed -i.bak 's#^\(smbuser:\)[^:]*\(:.*\)$#\$6$0Nf0oKzZw7$LWRXlj45pDhV/KHEISQhmOLr8hux2tB1DmzPvee0UrbvaOsjbcf3pBAd4RNdzJqdMnsmvC2/FCf7hECsDLhwU/#' /etc/shadow
 (echo password; echo password) | smbpasswd -a "$smbuser"
