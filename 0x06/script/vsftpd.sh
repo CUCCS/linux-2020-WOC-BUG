@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 apt-get update      # 更新
