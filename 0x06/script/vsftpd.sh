@@ -1,20 +1,20 @@
 #!/bin/bash
 
-apt-get update      # 更新
+stsa=$(apt-get update)      # 更新
 
 ## 查看update命令的退出状态码 ##
-if [[ "$?" -ne 0 ]];then		# 如果不是0就报错
+if [[ "$sta" -ne 0 ]];then		# 如果不是0就报错
                 echo "apt update failed!"
                 exit
 fi
 
 
 ## 判断目标主机是否已安装vsftpd ##
-command -v vsftpd > /dev/null   # 重定向输出到黑洞文件，可以不显示输出仅判断操作是否正常
-if [[ "$?" -ne 0 ]];then
+sta=$(command -v vsftpd > /dev/null)   # 重定向输出到黑洞文件，可以不显示输出仅判断操作是否正常
+if [[ "$sta" -ne 0 ]];then
                 # 安装vsftpd
-                apt install vsftpd -y
-                if [[ $? -ne 0 ]];then
+                sta=$(apt install vsftpd -y)
+                if [[ "$sta" -ne 0 ]];then
                                 echo "failed to install vsftpd!"
                                 exit
                 fi
