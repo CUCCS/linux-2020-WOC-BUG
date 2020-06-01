@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo su
 apt-get install -y samba
 
 smbuser="demoUser"
