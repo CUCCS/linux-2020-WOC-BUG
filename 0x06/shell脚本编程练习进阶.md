@@ -24,7 +24,9 @@ ftp服务器软件选用vsftpd
 
 远程登录到目的主机，拷贝并运行vsftpd.sh文件，进行vsftpd的安装和配置。
 
+[vstpd.sh](./script/vstpd.sh)
 
+[vstpd.conf](./config/vstpd.conf)
 
 <img src="./img/bash_vsftpd.png" />
 
@@ -255,14 +257,23 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
 
   ```
   vim /etc/bind/named.conf.options
-  # 添加如下配置
-  listen-on { 192.168.56.101; };
+  # options内添加如下配置
+  recursion yes;
+  allow-recursion { trusted; };
+  listen-on { 192.168.56.102; };
   allow-transfer { none; };
   forwarders {
       8.8.8.8;
       8.8.4.4;
   };
+  
+  # 文件末尾添加如下配置
+  acl "trusted" {
+          192.168.56.101;
+  };
   ```
+
+  ![](./img/options.png)
 
 - 编辑配置文件``named.conf.local``
 
@@ -275,6 +286,8 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
       file "/etc/bind/db.cuc.edu.cn";
   };
   ```
+
+  ![](./img/local.png)
 
 - 生成配置文件``db.cuc.edu.cn``
 
@@ -295,16 +308,17 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
   ;
   
           IN      NS      ns.cuc.edu.cn.
-  ns      IN      A       192.168.56.101
-  wp.sec.cuc.edu.cn.      IN      A       192.168.56.101
-  dvwa.sec.cuc.deu.cn.    IN      CHAME   wp.sec.cuc.edu.cn.
-  @       IN      AAAA    ::1
+  ns      IN      A       192.168.56.102
+  wp.sec.cuc.edu.cn.      IN      A       192.168.56.102
+  dvwa.sec.cuc.deu.cn.    IN      CNAME   wp.sec.cuc.edu.cn.
   ```
+  
+  ![](./img/db.cuc.edu.cn.png)
   
 - 重启bind：``service bind9 restart``
 
 
-##### client
+#### client
 
 - 安装resolvconf
 
@@ -321,7 +335,13 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
   nameserver 192.168.56.101
   ```
 
+- ``resolvconf -u``
 
+#### 测试
+
+![](./img/dig_wp.png)
+
+![](./img/dig_dvwa.png)
 
 
 ## 参考文献
