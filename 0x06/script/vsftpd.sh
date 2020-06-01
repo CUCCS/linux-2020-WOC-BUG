@@ -1,6 +1,6 @@
 #!/bin/bash
 
-stsa=$(apt-get update)      # 更新
+sta=$(apt-get update)      # 更新
 
 ## 查看update命令的退出状态码 ##
 if [[ "$sta" -ne 0 ]];then		# 如果不是0就报错
