@@ -7,9 +7,6 @@ before_install:
 script:
         - bash test.sh
 
-after_script:
-        - /user/bin/shellcheck test.sh
-
 notifications:
         email:
                 on_success: never
