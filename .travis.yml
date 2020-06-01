@@ -1,15 +1,19 @@
 language: bash
 
 before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y shellcheck
+	- sudo apt-get update -q
+	- export scversion="stable" # or "v0.4.7", or "latest"
+	- wget "https://storage.googleapis.com/shellcheck/shellcheck-${scversion}.linux.x86_64.tar.xz"
+	- tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
+	- sudo cp shellcheck-"${scversion}"/shellcheck /usr/bin/
+	- /usr/bin/shellcheck --version
 
 script:
-        - bash test.sh
+        	- bash test.sh
 
 after_script:
-        - /user/bin/shellcheck test.sh
+        	- /user/bin/shellcheck test.sh
 
 notifications:
-        email:
-                on_success: never
+       	 email:
+                	on_success: never
