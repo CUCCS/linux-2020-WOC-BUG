@@ -352,7 +352,7 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
   vim /etc/resolvconf/resolv.conf.d/head
   # 增加配置
   search cuc.edu.cn
-  nameserver 192.168.56.101
+  nameserver 192.168.56.102
   ```
 
 - ``resolvconf -u``
