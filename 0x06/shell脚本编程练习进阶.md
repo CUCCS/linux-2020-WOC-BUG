@@ -16,7 +16,7 @@ Ubuntu 18.04 Server 64bit
 
 ``ssh-copy-id -i ~/.ssh/id_rsa.pub wocbugnolvm@192.168.56.102``
 
-<img src="./img/keygen.png"  align='left'/>
+<img src="./img/keygen.png"/>
 
 
 
