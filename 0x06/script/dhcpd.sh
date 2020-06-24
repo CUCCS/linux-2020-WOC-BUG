@@ -7,11 +7,10 @@ if [[ "$sta" -ne 0 ]];then              # 如果不是0就报错
                 exit
 fi
 
-## 判断目标主机是否已安装vsftpd ##
-sta=$(command -v isc-dhcp-server > /dev/null)   # 重定向输出到黑洞文件，可以不显
-示输出仅判断操作是否正常
+## 判断目标主机是否已安装isc-dhcp-server ##
+sta=$(command -v isc-dhcp-server > /dev/null)   # 重定向输出到黑洞文件，可以不显示输出仅判断操作是否正常
 if [[ "$sta" -ne 0 ]];then
-                # 安装vsftpd
+                # 安装isc-dhcp-server
                 sta=$(apt install isc-dhcp-server -y)
                 if [[ "$sta" -ne 0 ]];then
                                 echo "failed to install isc-dhcp-server!"
@@ -40,8 +39,7 @@ EOF
 server_path=/etc/default/isc-dhcp-server
 
 if [[ ! -f "${server_path}.bak" ]];then
-                cp "$server_path" "$server_path".bak  # 没有已存在的备份，创建备
-份
+                cp "$server_path" "$server_path".bak  # 没有已存在的备份，创建备份
 else
                 echo "${server_path}.bak already exits!"
 fi
