@@ -18,6 +18,10 @@ Ubuntu 18.04 Server 64bit
 
 <img src="./img/keygen.png"  align='left'/>
 
+
+
+---
+
 ### 一、FTP
 
 ftp服务器软件选用vsftpd
@@ -209,7 +213,9 @@ ftp服务器软件选用vsftpd
 
 ### 四、Samba
 
-​	在192.168.56.102上安装samba并配置：[samba.sh](./script/samba.sh)
+在192.168.56.102上安装samba并配置：
+
+[samba.sh](./script/samba.sh)
 
 [samba.conf](./config/samba.conf)
 
@@ -263,6 +269,10 @@ wp.sec.cuc.edu.cn A <自行填写第5章实验中配置的WEB服务器的IP地�
 dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
 ```
 
+[dns_s.sh](./script/dns_s.sh)
+
+[dns_c.sh](./script/dns_c.sh)
+
 [named.conf.options](./config/named.conf.options)
 
 [named.conf.local](./config/named.conf.local)
@@ -278,8 +288,7 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
 - 修改配置文件``options``
 
   ```
-  vim /etc/bind/named.conf.options
-  # options内添加如下配置
+  # 16行后添加如下配置
   recursion yes;
   allow-recursion { trusted; };
   listen-on { 192.168.56.102; };
@@ -294,30 +303,23 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
           192.168.56.101;
   };
   ```
+  
 
-  ![](./img/options.png)
+![](./img/options.png)
 
 - 编辑配置文件``named.conf.local``
 
   ```
-  vim /etc/bind/named.conf.local
-  
   # 添加如下配置
   zone "cuc.edu.cn" {
       type master;
       file "/etc/bind/db.cuc.edu.cn";
   };
   ```
-
+  
   ![](./img/local.png)
 
-- 生成配置文件``db.cuc.edu.cn``
-
-  ```
-  cp /etc/bind/db.local /etc/bind/db.cuc.edu.cn
-  ```
-
-- 编辑配置文件``db.cuc.edu.cn``
+- 生成配置文件``db.cuc.edu.cn``，并编辑
 
   ```
   $TTL    604800
@@ -334,24 +336,17 @@ dvwa.sec.cuc.edu.cn CNAME wp.sec.cuc.edu.cn
   wp.sec.cuc.edu.cn.      IN      A       192.168.56.102
   dvwa.sec.cuc.deu.cn.    IN      CNAME   wp.sec.cuc.edu.cn.
   ```
-  
+
   ![](./img/db.cuc.edu.cn.png)
-  
-- 重启bind：``service bind9 restart``
+
+- 重启bind9：``service bind9 restart``
 
 
 #### client
 
-- 安装resolvconf
+- 安装resolvconf并修改配置文件
 
   ```
-  apt-get update && apt-get install resolvconf
-  ```
-
-- 修改配置文件
-
-  ```
-  vim /etc/resolvconf/resolv.conf.d/head
   # 增加配置
   search cuc.edu.cn
   nameserver 192.168.56.102
