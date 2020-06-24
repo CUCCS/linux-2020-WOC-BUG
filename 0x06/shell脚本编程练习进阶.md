@@ -157,6 +157,8 @@ ftp服务器软件选用vsftpd
 
 ### 三、DHCP
 
+[dhcpd.sh](./script/dhcpd.sh)
+
 [dhcpd.conf](./config/dhcpd.conf)
 
 [isc-dhcp-server](./config/isc-dhcp-server)
@@ -183,7 +185,7 @@ ftp服务器软件选用vsftpd
 
       ![](./img/serverip.png)
 
-      通过``apt-get update``,``apt-get install isc-dhcp-server``进行安装
+      安装``isc-dhcp-server``后
 
       更改/etc/dhcp/dhcpd.conf文件：
 
