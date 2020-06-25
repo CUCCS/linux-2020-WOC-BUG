@@ -92,7 +92,7 @@ sudo sed -i -e "/chroot_local_user=/s/^[#]//g;/chroot_local_user=/s/NO/YES/g" "$
 ## 设置目标主机用于FTP的范围 ##
 port_min=40000
 port_max=50000
-{echo "pasv_min_port=${port_min}"
+{ echo "pasv_min_port=${port_min}"
 echo "pasv_max_port=${port_max}"
 echo "userlist_enable=YES"
 echo "userlist_file=/etc/vsftpd.userlist"

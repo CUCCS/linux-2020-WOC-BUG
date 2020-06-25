@@ -23,7 +23,7 @@ cl_prw_rs="rw,sync,no_subtree_check"
 
 conf="/etc/exports"
 
-{echo "${srv_pr} ${client_ip}($cl_pr_op)"
+{ echo "${srv_pr} ${client_ip}($cl_pr_op)"
 echo "${srv_prw} ${client_ip}($cl_prw_op)"
 echo "${srv_no_rsquash} ${client_ip}($cl_prw_nors)"
 echo "${srv_rsquash} ${client_ip}($cl_prw_rs)" 
