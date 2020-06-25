@@ -46,8 +46,8 @@ sudo sed -i -e "/anon_mkdir_write_enable=/s/^[#]//g;/anon_mkdir_write_enable=/s/
 
 ## 在/etc/vsftpd.conf文件中搜索关键字，并替换文件中的内容 ##
 # anon_root设为/var/ftp，设置无需密码登录
-sudo echo "anon_root=/var/ftp" >> "$conf"
-sudo echo "no_anon_password=YES" >> "$conf"
+echo "anon_root=/var/ftp" >> "$conf"
+echo "no_anon_password=YES" >> "$conf"
 
 ## 设置用户名和密码方式访问的账号 ##
 user="wocbug"
@@ -92,24 +92,24 @@ sudo sed -i -e "/chroot_local_user=/s/^[#]//g;/chroot_local_user=/s/NO/YES/g" "$
 ## 设置目标主机用于FTP的范围 ##
 port_min=40000
 port_max=50000
-sudo echo "pasv_min_port=${port_min}" >> "$conf"
-sudo echo "pasv_max_port=${port_max}" >>  "$conf"
+ echo "pasv_min_port=${port_min}" >> "$conf"
+echo "pasv_max_port=${port_max}" >>  "$conf"
 
 
 ## 限制用户只有添加到userlist才能访问 ##
-sudo echo "userlist_enable=YES" >> "$conf"
-sudo echo "userlist_file=/etc/vsftpd.userlist" >> "$conf"
-sudo echo "userlist_deny=NO" >> "$conf"
+echo "userlist_enable=YES" >> "$conf"
+echo "userlist_file=/etc/vsftpd.userlist" >> "$conf"
+echo "userlist_deny=NO" >> "$conf"
 
 ## 将用户添加到userlist ##
-sudo grep -q "$user" /etc/vsftpd.userlist || sudo echo "$user" | sudo tee -a /etc/vsftpd.userlist
-sudo grep -q "anonymous" /etc/vsftpd.userlist || sudo echo "anonymous" | sudo tee -a /etc/vsftpd.userlist
+sudo grep -q "$user" /etc/vsftpd.userlist || echo "$user" | sudo tee -a /etc/vsftpd.userlist
+sudo grep -q "anonymous" /etc/vsftpd.userlist || echo "anonymous" | sudo tee -a /etc/vsftpd.userlist
 
 ## 只允许白名单用户访问ftp ##
-sudo echo "tcp_wrappers=YES" >> "$conf"
-sudo echo "vsftpd:ALL" >> /etc/hosts.deny
-sudo echo "vsftpd:192.168.56.101" >> /etc/hosts.allow
-sudo echo "allow_writeable_chroot=YES" >> "$conf"
+echo "tcp_wrappers=YES" >> "$conf"
+echo "vsftpd:ALL" >> /etc/hosts.deny
+echo "vsftpd:192.168.56.101" >> /etc/hosts.allow
+echo "allow_writeable_chroot=YES" >> "$conf"
 
 ## 判断vsftpd进程状态 ##
 if pgrep -x "vsftpd" > /dev/null

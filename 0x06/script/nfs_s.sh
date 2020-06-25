@@ -23,10 +23,10 @@ cl_prw_rs="rw,sync,no_subtree_check"
 
 conf="/etc/exports"
 
-sudo echo "${srv_pr} ${client_ip}($cl_pr_op)" >> "$conf"
-sudo echo "${srv_prw} ${client_ip}($cl_prw_op)" >> "$conf"
-sudo echo "${srv_no_rsquash} ${client_ip}($cl_prw_nors)" >> "$conf"
-sudo echo "${srv_rsquash} ${client_ip}($cl_prw_rs)" >> "$conf"
+echo "${srv_pr} ${client_ip}($cl_pr_op)" >> "$conf"
+echo "${srv_prw} ${client_ip}($cl_prw_op)" >> "$conf"
+echo "${srv_no_rsquash} ${client_ip}($cl_prw_nors)" >> "$conf"
+echo "${srv_rsquash} ${client_ip}($cl_prw_rs)" >> "$conf"
 
 sudo systemctl restart nfs-kernel-server
 
