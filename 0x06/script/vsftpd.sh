@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo apt-get update || echo "apt update failed!"
+sudo apt-get update || echo "apt update failed!"
 
 ## 判断目标主机是否已安装vsftpd ##
 sta=$(command -v vsftpd > /dev/null)   # 重定向输出到黑洞文件，可以不显示输出仅判断操作是否正常
