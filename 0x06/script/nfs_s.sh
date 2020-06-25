@@ -23,10 +23,10 @@ cl_prw_rs="rw,sync,no_subtree_check"
 
 conf="/etc/exports"
 
-sudo grep -q "$srv_pr" "$conf" && sudo sed -i -e "#${srv_pr}#s#^[#]##g;#${srv_pr}#s#\ .*#${client_ip}($cl_pr_op)" "$conf" || sudo echo "${srv_pr} ${client_ip}($cl_pr_op)" >> "$conf"
-sudo grep -q "$srv_prw" "$conf" && sudo sed -i -e "#${srv_prw}#s#^[#]##g;#${srv_prw}#s#\ .*#${client_ip}($cl_prw_op)" "$conf" || sudo echo "${srv_prw} ${client_ip}($cl_prw_op)" >> "$conf"
-sudo grep -q "$srv_no_rsquash" "$conf" && sudo sed -i -e "#${srv_no_rsquash}#s#^[#]##g;#${srv_no_rsquash}#s#\ .*#${client_ip}  ($cl_prw_nors)" "$conf" || sudo echo "${srv_no_rsquash} ${client_ip}($cl_prw_nors)" >> "$conf"
-sudo grep -q "$srv_rsquash" "$conf" && sudo sed -i -e "#${srv_rsquash}#s#^[#]##g;#${srv_rsquash}#s#\ .*#${client_ip}  ($cl_prw_rs)" "$conf" || sudo echo "${srv_rsquash} ${client_ip}($cl_prw_rs)" >> "$conf"
+sudo echo "${srv_pr} ${client_ip}($cl_pr_op)" >> "$conf"
+sudo echo "${srv_prw} ${client_ip}($cl_prw_op)" >> "$conf"
+sudo echo "${srv_no_rsquash} ${client_ip}($cl_prw_nors)" >> "$conf"
+sudo echo "${srv_rsquash} ${client_ip}($cl_prw_rs)" >> "$conf"
 
 sudo systemctl restart nfs-kernel-server
 

@@ -22,7 +22,7 @@ else
                 echo "${resolv_path}.bak already exits!"
 fi
 
-sudo cat>>${resolv_path}<<EOF
+cat>>${resolv_path}<<EOF
 search cuc.edu.cn
 nameserver 192.168.56.102
 EOF

@@ -25,7 +25,7 @@ fi
 
 sudo sed -i '16a recursion yes;\nallow-recursion { trusted; };\nlisten-on { 192.168.56.102; };\nallow-transfer { none; };\nforwarders {\n\t8.8.8.8;\n\t8.8.4.4;\n};\n' ${options_path}
 
-sudo cat>>${options_path}<<EOF
+cat>>${options_path}<<EOF
 acl "trusted" {
         192.168.56.101;
 };
@@ -39,7 +39,7 @@ else
                 echo "${local_path}.bak already exits!"
 fi
 
-sudo cat>>${local_path}<<EOF
+cat>>${local_path}<<EOF
 zone "cuc.edu.cn" {
     type master;
     file "/etc/bind/db.cuc.edu.cn";
@@ -49,7 +49,7 @@ EOF
 cuc_path="/etc/bind/db.cuc.edu.cn"
 sudo touch ${cuc_path}
 
-sudo cat>>${cuc_path}<<EOF
+cat>>${cuc_path}<<EOF
 ;
 ; BIND data file for local loopback interface
 ;

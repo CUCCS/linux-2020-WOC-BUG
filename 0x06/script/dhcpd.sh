@@ -22,7 +22,7 @@ else
                 echo "${conf_path}.bak already exits!"
 fi
 
-sudo cat>>${conf_path}<<EOF
+cat>>${conf_path}<<EOF
 subnet 192.168.57.0 netmask 255.255.255.0 {
         # client's ip address range
         range 192.168.57.150 192.168.57.200;
@@ -38,7 +38,7 @@ else
                 echo "${server_path}.bak already exits!"
 fi
 
-sudo cat>>${server_path}<<EOF
+cat>>${server_path}<<EOF
 INTERFACESv4="enp0s9"
 INTERFACESv6=""
 EOF
