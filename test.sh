@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 printf "bash\n"
-printf "===============vsftpd.sh==============\n"
-data=$(ssh wocbugnolvm@192.168.56.102)
-bash 0x06/script/vsftpd.sh
-
 printf "==============nfs_s.sh==============\n"
 bash 0x06/script/nfs_s.sh
 
